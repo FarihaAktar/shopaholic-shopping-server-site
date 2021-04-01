@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 
 const port = 5055
 
@@ -13,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World fariha!')
 })
 
 
@@ -28,6 +29,13 @@ client.connect(err => {
     productCollection.find()
       .toArray((err, products) => {
         res.send(products)
+      })
+  });
+
+  app.get('/product/:key', (req, res) => {
+    productCollection.find({_id: ObjectId(req.params.key)})
+      .toArray((err, product) => {
+        res.send(product)
       })
   })
 
