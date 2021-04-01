@@ -47,11 +47,12 @@ client.connect(err => {
       })
   })
 
-  app.delete('/deleteProduct/:id', (req, res) => {
+  app.delete('/delete/:id', (req, res) => {
     const id = ObjectId(req.params.id);
-    console.log("delete this", id)
-    // orderProductCollection.findOneAndDelete({_id: id})
-    // .then(documents=> res.send(!!documents.value))
+    // console.log(req.params.id)
+    // console.log("delete this", id)
+    // orderProductCollection.findOneAndDelete({ _id: id })
+    //   .then(documents => res.send(!!documents.value))
   })
 
   app.post('/addProduct', (req, res) => {
@@ -75,7 +76,7 @@ client.connect(err => {
 
   })
 
-  
+
   // client.close();
 
 });
