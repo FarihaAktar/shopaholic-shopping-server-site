@@ -47,6 +47,13 @@ client.connect(err => {
       })
   })
 
+  app.delete('/deleteProduct', (req, res) => {
+    // const id = ObjectId(req.params.id);
+    console.log(req.query.id)
+    // orderProductCollection.findOneAndDelete({_id: id})
+    // .then(documents=> res.send(!!documents.value))
+  })
+
   app.post('/addProduct', (req, res) => {
     const newProduct = req.body;
     console.log('new product added', newProduct);
@@ -68,12 +75,7 @@ client.connect(err => {
 
   })
 
-  app.delete('/deleteProduct/:id', (req, res) => {
-    const id = ObjectId(req.params.id);
-    console.log(id)
-    // orderProductCollection.findOneAndDelete({_id: id})
-    // .then(documents=> res.send(!!documents.value))
-  })
+  
   // client.close();
 
 });
