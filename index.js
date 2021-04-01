@@ -34,17 +34,17 @@ client.connect(err => {
   });
 
   app.get('/product/:key', (req, res) => {
-    productCollection.find({_id: ObjectId(req.params.key)})
+    productCollection.find({ _id: ObjectId(req.params.key) })
       .toArray((err, product) => {
         res.send(product)
       })
   })
 
-  app.get('/orders',(req,res)=>{
-    orderProductCollection.find({email : req.query.email})
-    .toArray((err, documents)=>{
-      res.send(documents)
-    })
+  app.get('/orders', (req, res) => {
+    orderProductCollection.find({ email: req.query.email })
+      .toArray((err, documents) => {
+        res.send(documents)
+      })
   })
 
   app.post('/addProduct', (req, res) => {
@@ -66,6 +66,13 @@ client.connect(err => {
         res.send(result.insertedCount > 0)
       })
 
+  })
+
+  app.delete('/deleteProduct/:id', (req, res) => {
+    const id = ObjectId(req.params.id);
+    console.log(id)
+    // orderProductCollection.findOneAndDelete({_id: id})
+    // .then(documents=> res.send(!!documents.value))
   })
   // client.close();
 
