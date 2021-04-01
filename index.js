@@ -40,6 +40,13 @@ client.connect(err => {
       })
   })
 
+  app.get('/orders',(req,res)=>{
+    orderProductCollection.find({email : req.query.email})
+    .toArray((err, documents)=>{
+      res.send(documents)
+    })
+  })
+
   app.post('/addProduct', (req, res) => {
     const newProduct = req.body;
     console.log('new product added', newProduct);
