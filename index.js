@@ -24,6 +24,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
 
   const productCollection = client.db("shopaholic").collection("products");
+  const orderProductCollection = client.db("shopaholic").collection("order");
 
   app.get('/products', (req, res) => {
     productCollection.find()
@@ -45,6 +46,16 @@ client.connect(err => {
     productCollection.insertOne(newProduct)
       .then(result => {
         console.log('inserted count', result.insertedCount)
+        res.send(result.insertedCount > 0)
+      })
+
+  })
+
+  app.post('/addOrder', (req, res) => {
+    const order = req.body;
+    console.log('new product added', order);
+    orderProductCollection.insertOne(order)
+      .then(result => {
         res.send(result.insertedCount > 0)
       })
 
