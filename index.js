@@ -32,6 +32,12 @@ client.connect(err => {
         res.send(products)
       })
   });
+  app.get('/manageProduct', (req, res) => {
+    productCollection.find()
+      .toArray((err, products) => {
+        res.send(products)
+      })
+  });
 
   app.get('/product/:key', (req, res) => {
     productCollection.find({ _id: ObjectId(req.params.key) })
