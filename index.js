@@ -19,8 +19,6 @@ app.get('/', (req, res) => {
 })
 
 
-
-
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
 
@@ -28,12 +26,6 @@ client.connect(err => {
   const orderProductCollection = client.db("shopaholic").collection("order");
 
   app.get('/products', (req, res) => {
-    productCollection.find()
-      .toArray((err, products) => {
-        res.send(products)
-      })
-  });
-  app.get('/manageProduct', (req, res) => {
     productCollection.find()
       .toArray((err, products) => {
         res.send(products)
@@ -83,8 +75,6 @@ client.connect(err => {
 
   })
 
-
-  // client.close();
 
 });
 
