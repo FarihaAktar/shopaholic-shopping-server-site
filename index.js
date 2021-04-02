@@ -1,10 +1,11 @@
 const express = require('express');
-const app = express();
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config();
 const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectId;
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const app = express();
+
 
 const port = 5055
 
@@ -55,10 +56,10 @@ client.connect(err => {
 
   app.delete('/delete/:id', (req, res) => {
     const id = ObjectId(req.params.id);
-    // console.log(req.params.id)
-    // console.log("delete this", id)
-    // orderProductCollection.findOneAndDelete({ _id: id })
-    //   .then(documents => res.send(!!documents.value))
+    console.log(req.params.id)
+    console.log("delete this", id)
+    productCollection.findOneAndDelete({ _id: id })
+      .then(documents => res.send(!!documents.value))
   })
 
   app.post('/addProduct', (req, res) => {
